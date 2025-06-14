@@ -65,6 +65,25 @@ ls -l models/Lightweight-Face-Detection_w8a16.onnx
 
 Note: The Lightweight Face Detection model is a quantized (8-bit) model optimized for edge devices. It provides a good balance between detection accuracy and inference speed, making it suitable for real-time face detection applications.
 
+5. Verify the installation:
+```bash
+# Check Python environment
+python --version  # Should be 3.8 or higher
+pip list  # Should show all required packages
+
+# Check ONNX Runtime installation
+python -c "import onnxruntime as ort; print(ort.get_available_providers())"  # Should list 'CPUExecutionProvider'
+
+# Verify model exists and is accessible
+if [ -f "models/Lightweight-Face-Detection_w8a16.onnx" ]; then
+    echo "Model file found:"
+    ls -l models/Lightweight-Face-Detection_w8a16.onnx
+else
+    echo "Error: Model file not found. Please run the download steps in section 4."
+    exit 1
+fi
+```
+
 ## Usage
 
 ### Running Face Counter with API Server
