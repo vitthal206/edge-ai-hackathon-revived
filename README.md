@@ -43,27 +43,29 @@ pip install -r requirements.txt
 
 ```bash
 mkdir -p models
-# Download the Qualcomm Lightweight Face Detection model
-# You can obtain the model in one of three ways:
 
-# Option 1: Download using wget
-wget https://github.com/quic/ai-model-zoo/raw/main/models/vision/detection/lightweight_face_detection/Lightweight-Face-Detection_w8a16.onnx -O models/Lightweight-Face-Detection_w8a16.onnx
+# Change to models directory
+cd models
 
-# Option 2: Download using curl
-curl -L https://github.com/quic/ai-model-zoo/raw/main/models/vision/detection/lightweight_face_detection/Lightweight-Face-Detection_w8a16.onnx -o models/Lightweight-Face-Detection_w8a16.onnx
+# Download the model using wget or curl
+# For w8a16 quantized model:
+wget https://huggingface.co/qualcomm/Lightweight-Face-Detection/resolve/main/Lightweight-Face-Detection_w8a16.onnx -O Lightweight-Face-Detection_w8a16.onnx
 
-# Option 3: Manual download
-# 1. Visit https://github.com/quic/ai-model-zoo/tree/main/models/vision/detection/lightweight_face_detection
-# 2. Download the 'Lightweight-Face-Detection_w8a16.onnx' file
-# 3. Place it in the 'models' directory
+# Or using curl:
+curl -L https://huggingface.co/qualcomm/Lightweight-Face-Detection/resolve/main/Lightweight-Face-Detection_w8a16.onnx -o Lightweight-Face-Detection_w8a16.onnx
 
-# Verify the model file
-# The model file should be approximately 1.2MB in size
-# You can verify the file exists and has the correct size using:
-ls -l models/Lightweight-Face-Detection_w8a16.onnx
+# Verify the model was downloaded
+if [ -f "Lightweight-Face-Detection_w8a16.onnx" ]; then
+    echo "Model downloaded successfully"
+    ls -l Lightweight-Face-Detection_w8a16.onnx
+else
+    echo "Error: Model download failed"
+    exit 1
+fi
+
+# Return to project root
+cd ..
 ```
-
-Note: The Lightweight Face Detection model is a quantized (8-bit) model optimized for edge devices. It provides a good balance between detection accuracy and inference speed, making it suitable for real-time face detection applications.
 
 5. Verify the installation:
 ```bash
